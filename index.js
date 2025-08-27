@@ -1,4 +1,6 @@
 const express = require('express')
+const { userRouter } = require('./routes/user')
+const { courseRouter } = require('./routes/courses')
 
 const app = express()
 const port = 3000
@@ -7,36 +9,9 @@ app.get('/',(req,res) =>{
     res.send("Hello world")
 })
 
+app.use("/user",userRouter)
+app.use("/courses",courseRouter)
 
-app.post('/users/login',(req,res)=>{
-    res.json({
-        message : "User login window"
-    })
-})
-
-app.post('/users/signup',(req,res)=>{
-    res.json({
-        message : "User Signup "
-    })
-})
-
-app.post('/user/purchase',(req,res)=>{
-    res.json({
-        message : "Purchase a course"
-    })
-})
-
-app.get('/courses',(req,res)=>{
-    res.json({
-        message : "get all the courses"
-    })
-})
-
-app.get('/user/myCourses',(req,res)=>{
-    res.json({
-        message : "see my courses"
-    })
-})
 
 app.listen(port,() => {
     console.log(`Example app listening on port ${port}`)
